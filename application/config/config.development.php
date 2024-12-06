@@ -65,8 +65,8 @@ return array(
     'DB_HOST' => '127.0.0.1',
     'DB_NAME' => 'huge',
     'DB_USER' => 'root',
-    'DB_PASS' => '12345678',
-    'DB_PORT' => '3306',
+    'DB_PASS' => '',
+    'DB_PORT' => '3307',
     'DB_CHARSET' => 'utf8',
     /**
      * Configuration for: Captcha size

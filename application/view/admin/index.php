@@ -24,6 +24,7 @@
                     <td>Link to user's profile</td>
                     <td>suspension Time in days</td>
                     <td>Soft delete</td>
+                    <td>User Role</td>
                     <td>Submit</td>
                 </tr>
                 </thead>

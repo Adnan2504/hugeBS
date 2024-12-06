@@ -33,6 +33,29 @@ class UserRoleModel
     }
 
     /**
+     * Fetches the current role of the user from the database.
+     *
+     * @param int $userId The ID of the user.
+     *
+     * @return int|null The current role of the user or null if not found.
+     */
+    public static function getUserRole($userId)
+    {
+        if (!$userId) {
+            return null;
+        }
+
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $query = $database->prepare("SELECT user_account_type FROM users WHERE user_id = :user_id LIMIT 1");
+        $query->execute([':user_id' => $userId]);
+
+        $result = $query->fetch();
+
+        return $result ? (int)$result->user_account_type : null;
+    }
+
+    /**
      * Writes the new account type marker to the database and to the session
      *
      * @param $type

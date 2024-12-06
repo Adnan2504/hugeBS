@@ -18,7 +18,7 @@
                     <td>Avatar</td>
                     <td>Username</td>
                     <td>User's email</td>
-                    <td>Activated ?</td>
+                    <td>User Role</td>
                     <td>Link to user's profile</td>
                 </tr>
                 </thead>
@@ -30,9 +30,20 @@
                                 <img src="<?= $user->user_avatar_link; ?>" />
                             <?php } ?>
                         </td>
-                        <td><?= $user->user_name; ?></td>
-                        <td><?= $user->user_email; ?></td>
-                        <td><?= ($user->user_active == 0 ? 'No' : 'Yes'); ?></td>
+                        <td><input type="text" id="userNameInput" name="userNameInput" value="<?= $user->user_name;?>"/>
+                        </td>
+                        <td><input type="text" id="userEmail" name="userEmail" value="<?= $user->user_email;?>"/>
+                        <td><select size="1" id="userGroup" name="userGroup">
+                                <option value="Guest" selected="selected">
+                                    Guest
+                                </option>
+                                <option value="User">
+                                    User
+                                </option>
+                                <option value="Admin">
+                                    Admin
+                                </option>
+                            </select></td>
                         <td>
                             <a href="<?= Config::get('URL') . 'profile/showProfile/' . $user->user_id; ?>">Profile</a>
                         </td>
@@ -41,4 +52,22 @@
             </table>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.0/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.0/css/jquery.dataTables.min.css" />
+
+    <script>
+        $(document).ready(function () {
+            $('.overview-table').DataTable({
+                columnDefs: [
+                    {
+                        orderable: false,
+                        targets: [1, 2, 3]
+                    }
+                ]
+            });
+        });
+
+    </script>
+
 </div>

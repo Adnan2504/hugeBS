@@ -1,9 +1,10 @@
 <div class="container">
-    <h1>NoteController/edit/:note_id</h1>
+<!--    <h1>MessengerController/edit/:note_id</h1>-->
 
     <div class="box">
         <h2>Edit a note</h2>
 
+        <!-- echo out the system feedback (error and success messages) -->
         <?php $this->renderFeedbackMessages(); ?>
 
         <?php if ($this->note) { ?>

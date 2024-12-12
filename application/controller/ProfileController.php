@@ -16,6 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        Auth::checkAdminAuthentication();
         $this->View->render('profile/index', array(
             'users' => UserModel::getPublicProfilesOfAllUsers())
         );

@@ -46,6 +46,45 @@ class AdminModel
     }
 
     /**
+     * Update User account Group/Type
+     * @param $typeId
+     * @param $userId
+     * @param $newUsername
+     * @param $newEmailAddress
+     *
+     * @return bool
+     */
+    public static function setAccountType($typeId = null, $userId = null, $newUsername = null, $newEmailAddress = null){
+        if (!$typeId | !$userId) {
+            return false;
+        }
+
+        $db = DatabaseFactory::getFactory()->getConnection();
+
+        if ($userId == Session::get('user_id')) {
+            Session::add('feedback_negative', 'Eigener Account kann nicht bearbeitet werden');
+            return false;
+        }
+
+        $query = $db->prepare("UPDATE users SET user_account_type = :typeId 
+                                        WHERE user_id = :userId 
+                                        LIMIT 1");
+
+        UserModel::saveNewUserName($userId, $newUsername);
+        UserModel::saveNewEmailAddress($userId, $newEmailAddress);
+
+        $query->execute([
+            ':typeId' => $typeId,
+            ':userId' => $userId
+        ]);
+
+        if ($query->rowCount() == 1) {
+            Session::add('feedback_positive', 'Account erfolgreich bearbeitet');
+            return true;
+        }
+    }
+
+    /**
      * Simply write the deletion and suspension info for the user into the database, also puts feedback into session
      *
      * @param $userId

@@ -54,7 +54,7 @@ class UserModel
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "SELECT user_id, user_name, user_email, user_active, user_has_avatar, user_deleted
+        $sql = "SELECT user_id, user_name, user_email, user_active, user_has_avatar, user_deleted, user_groups_long
                 FROM users WHERE user_id = :user_id LIMIT 1";
         $query = $database->prepare($sql);
         $query->execute(array(':user_id' => $user_id));
@@ -95,6 +95,39 @@ class UserModel
 
         return $query->fetch();
     }
+
+    /**
+     * @param $type
+     *
+     * @return mixed
+     */
+    public static function getAccountTypeLong($type = null)
+    {
+        if (!$type) {
+            return false;
+        }
+
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $query = $database->prepare("SELECT lang FROM user_groups_long
+                                 WHERE account_type = :account_type");
+
+        $query->execute(array(':account_type' => $type));
+        $result = $query->fetch()->lang;
+        return $result;
+    }
+
+    public static function getAvailableAccountTypes()
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $query = $database->prepare("SELECT * FROM user_groups_long");
+
+        $query->execute([]);
+        return $query->fetchAll();
+    }
+
+
 
     /**
      * Checks if a username is already taken

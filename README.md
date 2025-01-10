@@ -13,4 +13,4 @@ Integration eines Messenger Dienstes in das Framework (3-4 Laboreinheiten!)
 https://github.com/Adnan2504/hugeBS/tree/aufgabe8_BS/application
 in tree/master/applicatoin sind alle änderungen.
 
-Last commit message: Übung 8 
+Last commit message: Aufgabenstellung 9. Stored Procedures

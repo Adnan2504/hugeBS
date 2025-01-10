@@ -30,9 +30,7 @@
                             </a>
                         </li>
                     <?php endforeach; ?>
-
                 </ul>
-
             </div>
 
             <div id="group-modal" class="modal" style="display: none;">
@@ -41,7 +39,7 @@
                     <form id="group-form" method="post" action="<?php echo Config::get('URL'); ?>groups/createGroup">
                         <label for="group-name">Group Name:</label>
                         <input type="text" id="group-name" name="group_name" required />
-
+                        <br>
                         <label for="group-users">Select Users:</label>
                         <ul id="group-users">
                             <?php foreach ($this->users as $user): ?>

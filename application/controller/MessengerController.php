@@ -74,7 +74,6 @@ class MessengerController extends Controller
         Redirect::to('messenger');
     }
 
-
     public static function createGroup($name, $creatorId)
     {
         $database = DatabaseFactory::getFactory()->getConnection();
@@ -84,7 +83,6 @@ class MessengerController extends Controller
 
         return $database->lastInsertId();
     }
-
 
     /**
      * Delete a message.
